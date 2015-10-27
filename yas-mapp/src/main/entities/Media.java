@@ -12,7 +12,7 @@ public class Media {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @Column(name = "media_location")
     private String mediaLocation;
@@ -26,11 +26,15 @@ public class Media {
     @Column(name = "description")
     private String description;
 
-    public Long getId() {
+    public Media() {
+
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
