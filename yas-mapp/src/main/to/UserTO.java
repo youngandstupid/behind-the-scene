@@ -1,38 +1,40 @@
-package src.main.entities;
+package src.main.to;
 
-import src.main.to.UserTO;
+import src.main.entities.Media;
+import src.main.entities.Review;
+import src.main.entities.User;
+import src.main.entities.UserRole;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Salman on 10/19/2015.
+ * Created by Salman on 10/27/2015.
  */
+public class UserTO extends TO {
 
-@Entity
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(name = "role")
-    @Enumerated(EnumType.STRING)
     private UserRole role;
-    @Column(name = "first_name")
     private String firstName;
-    @Column(name = "last_name")
     private String lastName;
     private String email;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "profile_media_id")
     private List<Media> medias;
     private Date birthDate;
-    @OneToMany(mappedBy = "userReview")
     private List<Review> userReviews;
 
-    public User() {
+    public UserTO() {
 
+    }
+
+    public void createTO(User user) {
+        this.id = user.getId();
+        this.role = user.getRole();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.medias = user.getMedias();
+        this.birthDate = user.getBirthDate();
+        this.userReviews = user.getUserReviews();
     }
 
     public Integer getId() {
@@ -97,18 +99,5 @@ public class User {
 
     public void setUserReviews(List<Review> userReviews) {
         this.userReviews = userReviews;
-    }
-
-    public UserTO buildTO() {
-        UserTO result = new UserTO();
-        result.setId(this.getId());
-        result.setBirthDate(this.getBirthDate());
-        result.setEmail(this.getEmail());
-        result.setFirstName(this.getFirstName());
-        result.setLastName(this.getLastName());
-        result.setMedias(this.getMedias());
-        result.setRole(this.getRole());
-        result.setUserReviews(this.getUserReviews());
-        return result;
     }
 }
