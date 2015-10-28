@@ -27,6 +27,8 @@ public class User {
     @JoinColumn(name = "profile_media_id")
     private List<Media> medias;
     private Date birthDate;
+    @OneToMany(mappedBy = "userReview")
+    private List<Review> userReviews;
 
     public User() {
 
@@ -86,5 +88,13 @@ public class User {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Review> getUserReviews() {
+        return userReviews;
+    }
+
+    public void setUserReviews(List<Review> userReviews) {
+        this.userReviews = userReviews;
     }
 }

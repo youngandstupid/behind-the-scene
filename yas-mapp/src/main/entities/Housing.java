@@ -54,6 +54,8 @@ public class Housing {
     private List<Media> medias;
     @OneToMany(mappedBy = "housingDetail")
     private List<HousingTypeDetail> details;
+    @OneToMany(mappedBy = "hosuing")
+    private List<Review> reviews;
 
     public Integer getId() {
         return id;
@@ -222,4 +224,6 @@ public class Housing {
     public void setDetails(List<HousingTypeDetail> details) {
         this.details = details;
     }
+
+
 }

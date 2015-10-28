@@ -2,6 +2,7 @@ package src.main.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Salman on 10/27/2015.
@@ -22,6 +23,8 @@ public class HousingTypeDetail {
     private String currency;
     @Column(name = "date_of_price")
     private Date dateOfPrice;
+    @OneToMany(mappedBy = "housingTypeDetail")
+    private List<Review> housingDetailReviews;
 
     public Integer getId() {
         return id;
@@ -69,5 +72,13 @@ public class HousingTypeDetail {
 
     public void setDateOfPrice(Date dateOfPrice) {
         this.dateOfPrice = dateOfPrice;
+    }
+
+    public List<Review> getHousingDetailReviews() {
+        return housingDetailReviews;
+    }
+
+    public void setHousingDetailReviews(List<Review> housingDetailReviews) {
+        this.housingDetailReviews = housingDetailReviews;
     }
 }
